@@ -1,0 +1,49 @@
+<h1>Chat Room <%= @chat_room.name %></h1>
+
+<ul id="users">
+  <h3>Users</h3>
+  <%= render @chat_room.users %>
+</ul>
+
+<%= form_for [@chat_room, @chat_room.messages.build], :remote => true do |f| %>
+  <h3>New Message</h3>
+  <%= f.text_area :text, :rows => 4 %>
+
+  <p>
+    <%= f.submit 'send' %>
+  </p>
+<% end %>
+
+<div id="messages">
+  <h3>Messages</h3>
+  <%= render @chat_room.messages.order('created_at DESC') %>
+</div>
+
+<%= javascript_include_tag 'alondra-client'%>
+<% alondra_subscribe_tag(@chat_room) %>
+
+<script type="text/javascript">
+$(function(){
+  var alondraClient = new AlondraClient('localhost', 12345, ['/chat_rooms/1']);
+
+  $(alondraClient).bind("subscribed.Chat", function(event, resource){
+    console.log("Subscribed to chat ");
+  });
+
+  $(alondraClient).bind("created.Presence", function(event, resource){
+    if( $('#user_'+resource.user_id).length == 0 ){
+      $('#users').append("<li id='user_" + resource.user_id + "'>" + resource.username + "</li>");
+    }
+  });
+
+  $(alondraClient).bind("destroyed.Presence", function(event, resource){
+    $('#user_'+resource.user_id).remove();
+  });
+
+  // Clear the form after the message has been sent
+  $('#new_message').bind("ajax:success", function(evt, data, status, xhr){
+    $(this).find('textarea').val("");
+  });
+
+});
+</script>

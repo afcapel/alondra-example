@@ -1,0 +1,32 @@
+<h1>Listing chats rooms</h1>
+
+<% if @chat_rooms.present? %>
+  <table>
+    <tr>
+      <th>Name</th>
+      <th></th>
+    </tr>
+
+  <% @chat_rooms.each do |chat_room| %>
+    <tr>
+      <td><%= chat_room.name %></td>
+      <td><%= link_to 'Join', chat_room %></td>
+    </tr>
+  <% end %>
+  </table>
+<% else %>
+  <p>No chatrooms yet</p>
+<% end %>
+
+<h3>Create a new chat room</h3>
+
+<%= form_for(ChatRoom.new) do |f| %>
+
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

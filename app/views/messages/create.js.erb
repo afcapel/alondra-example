@@ -1,0 +1,3 @@
+if( $('#message_<%= @message.id %>').length == 0 ){
+  $('#messages h3').after('<%= escape_javascript(render @message) %>');
+}
