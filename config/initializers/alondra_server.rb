@@ -11,6 +11,4 @@ if Rails.env != 'production' && !defined?(PhusionPassenger)
 
   puts "Started alondra server from Rails initializer"
   Rails.logger.info "Started alondra server from Rails initializer"
-else
-  puts "WTF"
 end
