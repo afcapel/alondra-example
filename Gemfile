@@ -17,7 +17,7 @@ end
 
 gem 'jquery-rails'
 
-gem 'alondra', :path => '../alondra'
+gem 'alondra', :git => 'git://github.com/afcapel/alondra.git'
 
 # Use unicorn as the web server
 # gem 'unicorn'
