@@ -6,9 +6,8 @@
 # rails instances. This can mess with your Alondra server connections
 
 if Rails.env != 'production' && !defined?(PhusionPassenger)
-  ENV["ALONDRA_SERVER"] = 'true'
+
   Alondra::Alondra.start!
 
-  puts "Started alondra server from Rails initializer"
   Rails.logger.info "Started alondra server from Rails initializer"
 end

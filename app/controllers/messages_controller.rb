@@ -7,6 +7,6 @@ class MessagesController < ApplicationController
 
     @message.save
 
-    push :template => '/messages/create', :to => @chat_room
+    push '/messages/create', :to => @chat_room
   end
 end

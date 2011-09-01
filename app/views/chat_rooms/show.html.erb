@@ -20,23 +20,31 @@
 </div>
 
 <%= javascript_include_tag 'alondra-client'%>
-<% alondra_subscribe_tag(@chat_room) %>
+
 
 <script type="text/javascript">
 $(function(){
-  var alondraClient = new AlondraClient('localhost', 12345, ['/chat_rooms/1']);
+
+  // Selenium won't sent Cookies in websocket connections, so we use encypted token authentication
+
+  var alondraClient = new AlondraClient('localhost', <%= Alondra::Alondra.config.port %>, '<%= chat_room_path(@chat_room) %>', '<%= encrypted_token %>');
 
   $(alondraClient).bind("subscribed.Chat", function(event, resource){
     console.log("Subscribed to chat ");
   });
 
   $(alondraClient).bind("created.Presence", function(event, resource){
+    console.log("Created presence");
+
     if( $('#user_'+resource.user_id).length == 0 ){
+      console.log("inserting "+resource.username);
       $('#users').append("<li id='user_" + resource.user_id + "'>" + resource.username + "</li>");
     }
   });
 
   $(alondraClient).bind("destroyed.Presence", function(event, resource){
+    console.log("Destroyed presence");
+
     $('#user_'+resource.user_id).remove();
   });
 

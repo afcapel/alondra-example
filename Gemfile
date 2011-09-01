@@ -1,11 +1,11 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.1.0.rc8'
+gem 'rails', '3.1.0'
 
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
 
-gem 'mysql2'
+gem 'sqlite3'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -16,14 +16,7 @@ group :assets do
 end
 
 gem 'jquery-rails'
-gem 'jquery-rails'
-gem 'eventmachine', :git => 'git://github.com/eventmachine/eventmachine.git'
-gem 'em-websocket'
-gem 'em-synchrony'
-gem 'em-http-request'
-gem 'ffi'
-gem 'em-zeromq'
-gem 'uuidtools'
+
 gem 'alondra', :path => '../alondra'
 
 # Use unicorn as the web server
@@ -38,4 +31,5 @@ gem 'alondra', :path => '../alondra'
 group :test do
   # Pretty printed test output
   gem 'turn', :require => false
+  gem 'capybara-webkit', '0.6.1'
 end

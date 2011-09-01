@@ -29,7 +29,7 @@ ActiveRecord::Schema.define(:version => 20110830100804) do
   create_table "presences", :force => true do |t|
     t.integer  "user_id"
     t.integer  "chat_room_id"
-    t.integer  "count"
+    t.integer  "count",        :default => 0
     t.datetime "created_at"
     t.datetime "updated_at"
   end
