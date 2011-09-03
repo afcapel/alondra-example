@@ -7,7 +7,7 @@
 
 if Rails.env != 'production' && !defined?(PhusionPassenger)
 
-  Alondra::Alondra.start_server!
+  Alondra::Alondra.start_server_in_new_thread!
 
   Rails.logger.info "Started alondra server from Rails initializer"
 end
