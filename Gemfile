@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.1.0'
+gem 'rails', '>= 3.1.0'
 
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
@@ -10,8 +10,8 @@ gem 'sqlite3'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
-  gem 'sass-rails', "  ~> 3.1.0.rc"
-  gem 'coffee-rails', "~> 3.1.0.rc"
+  gem 'sass-rails', " >= 3.1.0"
+  gem 'coffee-rails', ">= 3.1.0"
   gem 'uglifier'
 end
 
@@ -29,6 +29,7 @@ gem 'alondra', :git => 'git://github.com/afcapel/alondra.git'
 # gem 'ruby-debug19', :require => 'ruby-debug'
 
 group :test do
+  gem 'minitest'
   # Pretty printed test output
   gem 'turn', :require => false
   gem 'capybara-webkit', '0.6.1'
